@@ -12,7 +12,7 @@ This is demo code that skips or simplifies error handling in many cases to reduc
 
 ## SETLS
 
-**SETLS** is a more advanced example designed to run on two iPhones plus a regular computer. Once they obtain certificates, the two iPhones can establish a direct peer-to-peer connection secured with mutual TLS. What's interesting about this is that the private key used by TLS is protected by the Secure Enclave. This works by having the extra computer acts as a Certificate Authority (CA), which will receive CSRs from the iPhones and sign leaf certificates that they will mutually trust.
+**SETLS** is a more advanced example designed to run on two iPhones plus a regular computer. Once they obtain certificates, the two iPhones can establish a direct peer-to-peer connection secured with mutual TLS. What's interesting about this is that the private key used by TLS is protected by the Secure Enclave. This works by having the extra computer act as a Certificate Authority (CA), which will receive CSRs from the iPhones and sign leaf certificates that they will mutually trust.
 
 For extra fun, the keys generated in this app are configured to require biometric authentication so you have to use Touch ID or Face ID to authorise the incoming and outgoing connections.
 
@@ -20,7 +20,7 @@ For extra fun, the keys generated in this app are configured to require biometri
 
 ### se_tls_rust
 
-A Rust library that backs **SETLS** Swift code. This generates the CSR, handles the request to the CA, and implements the TLS using the Rust crate `rustls`. It relies on Swift to create the key and sign things on demand. The XCode project is configured to build this Rust code automatically and integrate it using [swift-bridge](https://crates.io/crates/swift-bridge).
+A Rust library that backs the **SETLS** Swift code. This generates the CSR, handles the request to the CA, and implements the TLS using the Rust crate `rustls`. It relies on Swift to create the key and sign things on demand. The XCode project is configured to build this Rust code automatically and integrate it using [swift-bridge](https://crates.io/crates/swift-bridge).
 
 `signer.rs` contains the main integration point where we configure the `rcgen` and `rustls` libraries to use our custom signing logic.
 
